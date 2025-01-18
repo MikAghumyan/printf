@@ -1,7 +1,18 @@
-#include "./ft_printf.h"
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maghumya <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/18 20:26:00 by maghumya          #+#    #+#             */
+/*   Updated: 2025/01/18 20:35:37 by maghumya         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-size_t	ft_determinant(const char *format, va_list args)
+#include "./ft_printf.h"
+
+static size_t	ft_determinant(const char *format, va_list args)
 {
 	size_t	bytes;
 
@@ -16,6 +27,13 @@ size_t	ft_determinant(const char *format, va_list args)
 		bytes += ft_putnbr_c(va_arg(args, int));
 	else if (*format == 'u')
 		bytes += ft_putunit(va_arg(args, unsigned int));
+	else if (*format == 'x' || *format == 'X')
+		bytes += ft_puthex(va_arg(args, unsigned int), *format == 'X');
+	else if (*format == 'p')
+	{
+		bytes += ft_putstr_c("0x");
+		bytes += ft_puthex(va_arg(args, unsigned long long), 0);
+	}
 	return (bytes);
 }
 
@@ -41,17 +59,31 @@ int	ft_printf(const char *format, ...)
 	va_end(args);
 	return (bytes);
 }
+/*
+#include <limits.h>
+#include <stdio.h>
 
 int	main(int argc, char **argv)
 {
 	char	*str;
+	int		ft_printf_count;
+	int		printf_count;
+	int		n;
 
 	(void)argc;
 	if (argc == 2)
 		str = argv[1];
 	else
 		str = "hello world";
-	printf("\nbytes printed: %d", ft_printf("%s %s %c %% %d %i %u", str,
-			"BLABLA", 'A', 42, -42, 42));
+	printf("ft_printf:\n");
+	n = 42;
+	ft_printf_count = ft_printf("Hello, %s!\n %% %c %d %i %u %x %X %p", str,
+			'A', n, -n, UINT_MAX, INT_MIN, INT_MAX, &n);
+	printf("\nft_printf_count: %d\n", ft_printf_count);
+	printf("\nprintf:\n");
+	printf_count = printf("Hello, %s!\n %% %c %d %i %u %x %X %p", str, 'A', n,
+			-n, UINT_MAX, INT_MIN, INT_MAX, &n);
+	printf("\nprintf_count: %d\n", printf_count);
 	return (0);
 }
+*/

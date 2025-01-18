@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maghumya <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/17 14:36:33 by maghumya          #+#    #+#             */
-/*   Updated: 2025/01/17 14:38:53 by maghumya         ###   ########.fr       */
+/*   Created: 2025/01/18 20:35:59 by maghumya          #+#    #+#             */
+/*   Updated: 2025/01/18 20:36:01 by maghumya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
+#include <stdio.h>
 
-# include "./libft/libft.h"
-# include <stdarg.h>
+int	main(void)
+{
+	int	ft_printf_count;
+	int	printf_count;
+	int	n;
 
-int		ft_printf(const char *format, ...);
-size_t	ft_putchar_c(char c);
-size_t	ft_putstr_c(char *str);
-size_t	ft_putnbr_c(int n);
-size_t	ft_putunit(unsigned int n);
-size_t	ft_puthex(unsigned long long n, int upper);
-
-#endif
+	n = 42;
+	ft_printf_count = ft_printf("ft_printf: %d\n", n);
+	printf_count = printf("printf: %d\n", n);
+	printf("ft_printf_count: %d\n", ft_printf_count);
+	printf("printf_count: %d\n", printf_count);
+	return (0);
+}
