@@ -13,9 +13,13 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-#include <stdarg.h>
-#include "./libft/libft.h"
+# include "./libft/libft.h"
+# include <stdarg.h>
 
-int	ft_printf(const char *, ...);
+int		ft_printf(const char *, ...);
+size_t	ft_putchar_c(char);
+size_t	ft_putstr_c(char *);
+size_t	ft_putnbr_c(int);
+size_t	ft_putunit(unsigned int);
 
 #endif

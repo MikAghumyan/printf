@@ -1,28 +1,27 @@
 #include "./ft_printf.h"
 #include <stdio.h>
 
-int	ft_determinant(const char *format, va_list args)
+size_t	ft_determinant(const char *format, va_list args)
 {
-	int	bytes;
-	char *str;
+	size_t	bytes;
 
 	bytes = 0;
 	if (*format == '%')
-	{
-		ft_putchar_fd('%', 1);
-		bytes++;
-	}
-	else if (*format == 's') {
-		str = va_arg(args, char *);
-		ft_putstr_fd(str,1);
-		bytes += ft_strlen(str);
-	}
+		bytes += ft_putchar_c('%');
+	else if (*format == 's')
+		bytes += ft_putstr_c(va_arg(args, char *));
+	else if (*format == 'c')
+		bytes += ft_putchar_c(va_arg(args, int));
+	else if (*format == 'd' || *format == 'i')
+		bytes += ft_putnbr_c(va_arg(args, int));
+	else if (*format == 'u')
+		bytes += ft_putunit(va_arg(args, unsigned int));
 	return (bytes);
 }
 
 int	ft_printf(const char *format, ...)
 {
-	unsigned int	bytes;
+	size_t	bytes;
 	va_list	args;
 
 	va_start(args, format);
@@ -45,8 +44,14 @@ int	ft_printf(const char *format, ...)
 
 int	main(int argc, char **argv)
 {
+	char	*str;
+
 	(void)argc;
-	char *str = "hello world";
-	printf("\nbytes printed: %d", ft_printf(argv[1], str));
+	if (argc == 2)
+		str = argv[1];
+	else
+		str = "hello world";
+	printf("\nbytes printed: %d", ft_printf("%s %s %c %% %d %i %u", str,
+			"BLABLA", 'A', 42, -42, 42));
 	return (0);
 }
