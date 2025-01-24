@@ -15,7 +15,7 @@
 size_t	ft_putchar_c(char c)
 {
 	ft_putchar_fd(c, 1);
-	return (sizeof(c));
+	return (1);
 }
 
 size_t	ft_putstr_c(char *str)
