@@ -41,8 +41,8 @@ size_t	ft_putnbr_c(int n)
 		sign = 1;
 	if (n >= 10 || n <= -10)
 	{
-		bytes += ft_putnbr_c((sign * n) / 10);
-		bytes += ft_putnbr_c((sign * n) % 10);
+		bytes += ft_putnbr_c(sign * (n / 10));
+		bytes += ft_putnbr_c(sign * (n % 10));
 	}
 	else
 		bytes += ft_putchar_c(n * sign + '0');
