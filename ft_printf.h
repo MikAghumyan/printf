@@ -22,5 +22,6 @@ size_t	ft_putstr_c(char *str);
 size_t	ft_putnbr_c(int n);
 size_t	ft_putunit(unsigned int n);
 size_t	ft_puthex(unsigned long long n, int upper);
+size_t	ft_putptr(unsigned long long n);
 
 #endif

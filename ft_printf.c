@@ -30,10 +30,7 @@ static size_t	ft_determinant(const char *format, va_list args)
 	else if (*format == 'x' || *format == 'X')
 		bytes += ft_puthex(va_arg(args, unsigned int), *format == 'X');
 	else if (*format == 'p')
-	{
-		bytes += ft_putstr_c("0x");
-		bytes += ft_puthex(va_arg(args, unsigned long long), 0);
-	}
+		bytes += ft_putptr(va_arg(args, unsigned long long));
 	return (bytes);
 }
 
@@ -77,12 +74,12 @@ int	main(int argc, char **argv)
 		str = "hello world";
 	printf("ft_printf:\n");
 	n = 42;
-	ft_printf_count = ft_printf("Hello, %s!\n %% %c %d %i %u %x %X %p", str,
-			'A', n, -n, UINT_MAX, INT_MIN, INT_MAX, &n);
+	ft_printf_count = ft_printf("Hello, %s!\n %% %c %d %i %u %x %X %p %p %x",
+			str, 'A', n, -n, UINT_MAX, INT_MIN, INT_MAX, &n, 0, 0);
 	printf("\nft_printf_count: %d\n", ft_printf_count);
 	printf("\nprintf:\n");
-	printf_count = printf("Hello, %s!\n %% %c %d %i %u %x %X %p", str, 'A', n,
-			-n, UINT_MAX, INT_MIN, INT_MAX, &n);
+	printf_count = printf("Hello, %s!\n %% %c %d %i %u %x %X %p %p %x", str,
+			'A', n, -n, UINT_MAX, INT_MIN, INT_MAX, &n, 0, 0);
 	printf("\nprintf_count: %d\n", printf_count);
 	return (0);
 }
