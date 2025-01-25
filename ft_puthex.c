@@ -36,7 +36,7 @@ size_t	ft_puthex(unsigned long long n, int upper)
 
 size_t	ft_putptr(unsigned long long n)
 {
-	size_t bytes;
+	size_t	bytes;
 
 	bytes = 0;
 	if (!n)
