@@ -20,6 +20,8 @@ size_t	ft_putchar_c(char c)
 
 size_t	ft_putstr_c(char *str)
 {
+	if (!str)
+		str = "(null)";
 	ft_putstr_fd(str, 1);
 	return (ft_strlen(str));
 }
