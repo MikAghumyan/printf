@@ -39,11 +39,6 @@ size_t	ft_putptr(unsigned long long n)
 	size_t	bytes;
 
 	bytes = 0;
-	if (!n)
-	{
-		bytes += ft_putstr_c("(nil)");
-		return (bytes);
-	}
 	bytes += ft_putstr_c("0x");
 	bytes += ft_puthex(n, 0);
 	return (bytes);

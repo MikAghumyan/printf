@@ -75,11 +75,11 @@ int	main(int argc, char **argv)
 	printf("ft_printf:\n");
 	n = 42;
 	ft_printf_count = ft_printf("Hello, %s!\n %% %c %d %i %u %x %X %p %p %x",
-			str, 'A', n, -n, UINT_MAX, INT_MIN, INT_MAX, &n, 0, 0);
+			str, 'A', n, -n, UINT_MAX, INT_MIN, INT_MAX, &n, (void *)0, 0);
 	printf("\nft_printf_count: %d\n", ft_printf_count);
 	printf("\nprintf:\n");
 	printf_count = printf("Hello, %s!\n %% %c %d %i %u %x %X %p %p %x", str,
-			'A', n, -n, UINT_MAX, INT_MIN, INT_MAX, &n, 0, 0);
+			'A', n, -n, UINT_MAX, INT_MIN, INT_MAX, &n, (void *)0, 0);
 	printf("\nprintf_count: %d\n", printf_count);
 	printf("\n %d %d", ft_printf("%d", INT_MIN), printf("%d", INT_MIN));
 	return (0);
